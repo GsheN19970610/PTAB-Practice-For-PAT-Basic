@@ -1,0 +1,44 @@
+/*#include<stdio.h>
+int main()
+{
+	int N,school[100010]={0},schid,ans[100010]={0};
+	int i,score,max=-1,maxid=0;
+	scanf("%d",&N);
+	for(i=0;i<N;i++)
+	{
+		scanf("%d%d",&schid,&score);
+		ans[schid]+=score;
+	}
+	for(i=0;i<N;i++)                      //注意这里是错的,学号是从一号开始的,所以第一个应该是i=1
+	{
+		if(max<ans[i])
+		{
+			max=ans[i];
+			maxid=i;
+		}
+	}
+	printf("%d %d",maxid,max);
+	return 0;
+}*/
+#include<stdio.h>
+int main()
+{
+	int N,schid,ans[100010]={0};
+	int i,score,max=0,maxid=1;
+	scanf("%d",&N);
+	for(i=0;i<N;i++)
+	{
+		scanf("%d%d",&schid,&score);		//此处不需要加空格
+		ans[schid]+=score;					//同理于ans[schid]=ans[schid]+score;
+	}
+	for(i=1;i<=N;i++)
+	{
+		if(max<ans[i])
+		{
+			max=ans[i];
+			maxid=i;
+		}
+	}
+	printf("%d %d",maxid,max);				//此处别忘了空格
+	return 0;
+}
