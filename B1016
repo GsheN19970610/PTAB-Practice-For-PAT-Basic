@@ -1,0 +1,31 @@
+/*1016*/
+#include<stdio.h>
+int main()
+{
+	long a,b;
+	int pa=0;
+	int pb=0;
+	int da,db,p;
+	scanf("%ld %d %ld %d",&a,&da,&b,&db);
+	while(a)
+	{
+		if(a%10==da)
+		{
+			a=a/10;pa=pa*10+da;
+		}
+		else
+			a=a/10;
+	}
+	while(b)
+	{
+		if(b%10==db)
+		{
+			b=b/10;pb=pb*10+db;
+		}
+		else
+			b=b/10;
+	}
+	p=pa+pb;
+	printf("%d\n",p);
+	return 0;
+}
