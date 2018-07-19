@@ -1,0 +1,53 @@
+/*#include<stdio.h>
+int main()
+{
+	int N,i,m,j;
+	char C;
+	scanf("%d %c",N,C);				//这里没加&
+	if(N%2==0)
+		m=N/2;
+	else
+		m=N/2+1;
+	for(i=0;i<N;i++)
+		printf("%c",C);
+		printf("\n");
+	for(i=1;i<m-1;i++)
+	{
+		printf("%c",C);
+		for(j=1;j<N-1;j++)
+			printf(" ");
+		printf("%c",C);
+		printf("\n");
+	}
+	for(i=0;i<N;i++)
+		printf("%c",C);
+	return 0;
+}*/
+
+
+
+
+#include<stdio.h>
+int main()
+{
+	int row,i,col,j;
+	char C;
+	scanf("%d %c",&col,&C);			//这道题本来应该是很简单的,这里很傻逼的没加&
+	if(col%2==0)					//但是这边编译竟然通过了
+		row=col/2;
+	else
+		row=col/2+1;
+	for(i=0;i<col;i++)
+		printf("%c",C);
+	for(i=1;i<row-2;i++)
+	{
+		printf("%c",C);
+		for(j=1;j<col-1;j++)
+			printf(" ");
+		printf("%c",C);
+	}
+	for(i=0;i<col;i++)
+		printf("%c",C);
+	return 0;
+}
+
