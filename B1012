@@ -1,0 +1,122 @@
+/*
+#include<stdio.h>
+int main()
+{
+	int b1=0,b2=0,b3=0,b5=0,b;
+	float b4=0;
+	int count=0,a[1010],i,n;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	for(i=0;i<n;i++)
+	{
+			if(a[i]%10==0)
+				b1=b1+a[i];
+	}
+
+	for(i=0;i<n;i++)										//我在这写到的很难在最后没有对应的数字的时候输出N;
+	{														  我在输出b4第四个结果的时候预先设置为float,其实是
+															  可以在最后强制转换方便操作的.
+		if(a[i]%5==1)										  犯下的错误有在最后的时候试图输出("%.1d",b4),应该
+		{													  是%.1f (提前float或者强制转换)
+			count++;										
+			if(count%2==1)
+				b2=b2+a[i];									//很重要一个就是在每次算完一个count的时候,count的结
+			else											  果会保留到接下来的语句中,所以这种写法无解(若重置为
+				b2=b2-a[i];                                   0,会在最后无法统计,如果不重置,会导致结果错误,所以正
+		}													  确答案内的count[5]数组完美解决了这个问题.
+	}
+	count=0;
+	for(i=0;i<n;i++)									
+	{
+		if(a[i]%5==2)
+			b3++;
+	}
+	for(i=0;i<n;i++)
+	{
+		if(a[i]%5==3)
+		{
+			count++;
+			b4=b4+a[i];
+		}
+	}
+	for(i=0;i<n;i++)
+	{
+		if(a[i]%5==4)
+		{
+			b=a[i];
+			if(b5<b)
+				b5=b;
+		}
+	}
+	printf("%d %d %d %0.1f %d",b1,b2,b3,b4/count,b5);
+	return 0;
+}
+
+*/
+
+
+
+#include<stdio.h>
+int main()
+{
+	int count[5]={0};					//这里count[5]每一个都需要统计,在最后的判断过程中不应使用ans而应该count防止正负交替导致ans取0造成错误.
+	int ans[5]={0};
+	int n,temp,i;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)					//只走一遍的话要防止同一个数据满足下面好几种的情况出现,不然会在一个满足的if/else if跳出
+	{
+		scanf("%d",&temp);
+		if(temp%10==0)					//双等于号
+		{
+			ans[0]=ans[0]+temp;			//数组从0开始取起
+			count[0]++;
+		}
+		else if(temp%5==1)
+		{
+			count[1]++;
+			if(count[1]%2==1)
+			{
+				ans[1]=ans[1]+temp;
+			}
+			else if(count[1]%2==0)
+				ans[1]=ans[1]-temp;
+		}
+		else if(temp%5==2)
+			count[2]++;
+		else if(temp%5==3)
+		{
+			count[3]++;
+			ans[3]=ans[3]+temp;
+		}
+		else if(temp%5==4)
+		{
+			count[4]++;
+			if(ans[4]<temp)
+				ans[4]=temp;
+		}
+		
+	}
+	if(count[0]==0)						//都要用count来判断,防止正负对消导致有ans等于0的情况出现导致错误
+		printf("N ");
+	else
+		printf("%d ",ans[0]);
+	if(count[1]==0)
+		printf("N ");
+	else
+		printf("%d ",ans[1]);
+	if(count[2]==0)
+		printf("N ");
+	else
+		printf("%d ",count[2]);
+	if(count[3]==0)
+		printf("N ");
+	else
+		printf("%.1f ",(double)ans[3]/count[3]);		//强制转换,此处ans前面不需要加括号
+	if(count[4]==0)
+		printf("N");					//注意,这里N后面是没有空格的
+	else
+		printf("%d",ans[4]);			//同理,没有空格
+	return 0;
+
+}
