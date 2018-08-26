@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char a[110];						//数字太大,不能够用int,long这类
+	int g,s,b,temp,n=0,i,t;
+	scanf("%s",a);						//输入一个数组用%s,且不需要加&
+	t=strlen(a);						//t等于数组的长度
+	for(i=0;i<t;i++)
+	{
+		n=n+a[i]-'0';					//符号减去符号等于数字,运用ASCII码规则
+	}
+	g=n%10;
+	s=(n/10)%10;
+	b=n/100;
+	switch(b)
+	{
+	case 0:										//百位为零,不输出
+		break;
+	case 1:
+		printf("yi ");break;
+	case 2:
+		printf("er ");break;
+	case 3:
+		printf("san ");break;
+	case 4:
+		printf("si ");break;
+	case 5:
+		printf("wu ");break;
+	case 6:
+		printf("liu ");break;
+	case 7:
+		printf("qi ");break;
+	case 8:
+		printf("ba ");break;
+	case 9:
+		printf("jiu ");break;
+	}
+	switch(s)
+	{
+	case 0:
+		if(b==0) break;							//如果百位为0,十位也为0
+		else printf("ling "); break;
+	case 1:
+		printf("yi ");break;
+	case 2:
+		printf("er ");break;
+	case 3:
+		printf("san ");break;
+	case 4:
+		printf("si ");break;
+	case 5:
+		printf("wu ");break;
+	case 6:
+		printf("liu ");break;
+	case 7:
+		printf("qi ");break;
+	case 8:
+		printf("ba ");break;
+	case 9:
+		printf("jiu ");break;
+	}
+	switch(g)
+	{
+	case 0:
+		if(b==0&&s==0) break;					//全为零就直接跳出
+		else printf("ling");break;
+	case 1:
+		printf("yi");break;
+	case 2:
+		printf("er");break;
+	case 3:
+		printf("san");break;
+	case 4:
+		printf("si");break;
+	case 5:
+		printf("wu");break;
+	case 6:
+		printf("liu");break;
+	case 7:
+		printf("qi");break;
+	case 8:
+		printf("ba");break;
+	case 9:
+		printf("jiu");break;
+	}
+	return 0;
+}
