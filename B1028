@@ -1,9 +1,8 @@
 #include<stdio.h>
-
 struct person{
-char name[10];
+char name[10];										//char
 int yy,mm,dd;
-}temp,left,right,youngest,oldest;
+}temp,left,right,youngest,oldest;					//直接设置五个值
 
 bool MoreEqu(person a,person b){
 	if(a.yy!=b.yy) return a.yy>=b.yy;
@@ -12,39 +11,39 @@ bool MoreEqu(person a,person b){
 }
 
 bool LessEqu(person a,person b){
-	if(a.yy!=b.yy) return a.yy<=b.yy;
-	else if(a.mm!=b.mm) return a.mm<=b.mm;
-	else return a.dd<=b.dd;
+	if(a.yy!=b.yy) return a.yy<=b.yy;				//bool不仅用于排序,在这里可以用于
+	else if(a.mm!=b.mm) return a.mm<=b.mm;			//如果a.yy<=b.yy,则输出真值,在下边if内
+	else return a.dd<=b.dd;							//可以使用
 }
 
 void init()
 {
-	left.yy=youngest.yy=1814;
-	right.yy=oldest.yy=2014;
+	left.yy=youngest.yy=1814;						//一开始把最年轻的设置到最远(最老出生)
+	right.yy=oldest.yy=2014;						//一开始吧最老的设置到最年轻(最近出生)
 	right.mm=left.mm=youngest.mm=oldest.mm=9;
 	right.dd=left.dd=youngest.dd=oldest.dd=6;
 }
 
 int main()
 {
-	init();
+	init();							//这里等于直接调用上面void init内的代码
 	int i,n,num=0;
 	scanf("%d",&n);
 	for(i=0;i<n;i++)
 	{
-		scanf("%s %d/%d/%d",temp.name,&temp.yy,&temp.mm,&temp.dd);
+		scanf("%s %d/%d/%d",temp.name,&temp.yy,&temp.mm,&temp.dd);		//其中的年月日之间有/,所以在输入的时候也要带一个/
 		if(MoreEqu(temp,left)&&LessEqu(temp,right))
 		{
 			num++;
 			if(MoreEqu(temp,youngest)) {
-				youngest=temp;
+				youngest=temp;		//结构体是可以直接等于的,
 			}
 			if(LessEqu(temp,oldest)){
 				oldest=temp;
 			}
 		}
 	}
-	if(num==0)
+	if(num==0)						//要考虑所有日期都不合法的情况
 		printf("0");
 	else printf("%d %s %s",num,oldest.name,youngest.name);
 	return 0;
