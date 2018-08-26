@@ -1,0 +1,51 @@
+#include<stdio.h>
+
+struct person{
+char name[10];
+int yy,mm,dd;
+}temp,left,right,youngest,oldest;
+
+bool MoreEqu(person a,person b){
+	if(a.yy!=b.yy) return a.yy>=b.yy;
+	else if(a.mm!=b.mm) return a.mm>=b.mm;
+	else return a.dd>=b.dd;
+}
+
+bool LessEqu(person a,person b){
+	if(a.yy!=b.yy) return a.yy<=b.yy;
+	else if(a.mm!=b.mm) return a.mm<=b.mm;
+	else return a.dd<=b.dd;
+}
+
+void init()
+{
+	left.yy=youngest.yy=1814;
+	right.yy=oldest.yy=2014;
+	right.mm=left.mm=youngest.mm=oldest.mm=9;
+	right.dd=left.dd=youngest.dd=oldest.dd=6;
+}
+
+int main()
+{
+	init();
+	int i,n,num=0;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%s %d/%d/%d",temp.name,&temp.yy,&temp.mm,&temp.dd);
+		if(MoreEqu(temp,left)&&LessEqu(temp,right))
+		{
+			num++;
+			if(MoreEqu(temp,youngest)) {
+				youngest=temp;
+			}
+			if(LessEqu(temp,oldest)){
+				oldest=temp;
+			}
+		}
+	}
+	if(num==0)
+		printf("0");
+	else printf("%d %s %s",num,oldest.name,youngest.name);
+	return 0;
+}
