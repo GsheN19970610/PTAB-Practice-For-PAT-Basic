@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int x,i,j,z,m,n;					//这里我第一次做的时候在上面输入过n,在下面mn循环的时候再次使用
+	char c;								//就一直错,所以这里改成输入z个
+	int count;							
+	scanf("%d %c",&z,&c);
+	x=(int)sqrt(2.0*(z+1))-1;			//这里强制转换很好用
+	if(x%2==0)
+		x=x-1;
+	count=(1+x)*(1+x)/2-1;
+	for(i=x;i>=1;i-=2)					//这里其实有很多种算法
+	{
+		for(m=0;m<(x-i)/2;m++)
+			printf(" ");
+		for(n=0;n<i;n++)
+			printf("%c",c);
+		printf("\n");					//别忘了每行打完以后换一行
+	}
+	for(i=3;i<=x;i+=2)
+	{
+		for(m=0;m<(x-i)/2;m++)
+			printf(" ");
+		for(n=0;n<i;n++)
+			printf("%c",c);
+		printf("\n");
+	}
+	printf("%d\n",z-count);				//最后还要输出剩余部分
+	return 0;
+}
