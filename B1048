@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<string.h>
+const int maxn=110;
+
+void reverse(char s[])
+{
+	int len=strlen(s);
+	int i,temp;
+	for(i=0;i<len/2;i++)
+	{
+		temp=s[i];
+		s[i]=s[len-i-1];
+		s[len-i-1]=temp;
+	}
+}
+
+int main()
+{
+	char a[110],b[110],ans[110]={0};
+	int len,lena,lenb;
+	scanf("%s %s",a,b);
+	lena=strlen(a);
+	lenb=strlen(b);
+	len=lena>lenb?lena:lenb;				//这里是很重要一个公式,即?前成立就返回:前的值,反之返回:之后的值
+	reverse(a);
+	reverse(b);
+	int i,temp;
+	int NUMa,NUMb;
+	for(i=0;i<len;i++)
+	{
+		NUMa=i<lena?a[i]-'0':0;				//这里提前把每一位都设置为int形式的数字,同时也使较短的那一条数组补足0
+		NUMb=i<lenb?b[i]-'0':0;
+		if(i%2==0)
+		{
+			temp=(NUMa+NUMb)%13;
+			if(temp==10)
+				ans[i]='J';
+			else if(temp==11)
+				ans[i]='Q';
+			else if(temp==12)
+				ans[i]='K';
+			else
+				ans[i]=temp+'0';
+		}
+		else
+		{
+			temp=NUMb-NUMa;
+		if(temp<0)
+			temp+=10;
+		ans[i]=temp+'0';
+		}
+	}
+	reverse(ans);
+	puts(ans);
+	return 0;
+}
