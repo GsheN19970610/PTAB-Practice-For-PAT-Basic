@@ -1,0 +1,19 @@
+#include<stdio.h>
+const int Galleon=17*29;
+const int Sickle=29;
+int main()
+{
+	int p1,p2,p3;
+	int s1,s2,s3;
+	scanf("%d.%d.%d %d.%d.%d",&p1,&p2,&p3,&s1,&s2,&s3);
+	int abs1=p1*Galleon+p2*Sickle+p3;
+	int abs2=s1*Galleon+s2*Sickle+s3;
+	int change=abs2-abs1;
+	if(change<0)
+	{
+		printf("-");
+		change=-change;
+	}
+	printf("%d.%d.%d\n",change/Galleon,change%Galleon/Sickle,change%Sickle);
+	return 0;
+}
