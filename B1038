@@ -1,0 +1,22 @@
+#include<stdio.h>
+int main()
+{
+	int hashTable[110]={0};
+	int n,score,k;
+	int i;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&score);
+		hashTable[score]++;
+	}
+	scanf("%d",&k);
+	for(i=0;i<k;i++)
+	{
+		scanf("%d",&score);
+		printf("%d",hashTable[score]);
+		if(i<k-1)
+			printf(" ");
+	}
+	return 0;
+}
