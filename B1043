@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char str[100010];
+	char PATest[6]={'P','A','T','e','s','t'};
+	gets(str);
+	int len;
+	len=strlen(str);
+	int hashTable[6]={0};
+	int i,j,sum=0;
+	for(i=0;i<len;i++)
+	{
+		for(j=0;j<6;j++)
+		{
+			if(str[i]==PATest[j]){
+				hashTable[j]++;
+				sum++;
+			}
+		}
+	}
+	while(sum>0)
+	{
+		for(i=0;i<6;i++)
+		{
+			if(hashTable[i]>0)
+			{
+				printf("%c",PATest[i]);
+				hashTable[i]--;
+				sum--;
+			}
+		}
+	}
+	return 0;
+}
