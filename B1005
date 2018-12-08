@@ -33,7 +33,7 @@ int main()
 			count++;
 		}
 	}
-	sort(a,a+n,cmp);
+	sort(a,a+n,cmp);        //这里,要对整个数组排序,因为这里还未筛选出哪些是不输出的,所以要全体排序,否则用count会导致错误
 	for(i=0;i<n;i++)
 	{
 		if(HashTable[a[i]]==false)
