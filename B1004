@@ -1,0 +1,24 @@
+#include<stdio.h>
+struct student{
+char name[15];
+char id[15];
+int score;
+}temp,ans_max,ans_min;
+int main()
+{
+	int i,n;
+	scanf("%d",&n);
+	ans_max.score=-1;
+	ans_min.score=101;
+	for(i=0;i<n;i++)
+	{
+		scanf("%s%s%d",temp.name,temp.id,&temp.score);
+		if(ans_min.score>temp.score){
+		ans_min=temp;}                  //直接数组等于过去
+		if(ans_max.score<temp.score){
+		ans_max=temp;}
+	}
+	printf("%s %s\n",ans_max.name,ans_max.id);
+	printf("%s %s",ans_min.name,ans_min.id);
+	return 0;
+}
